@@ -1,0 +1,26 @@
+# Gradle build outputs and cache
+.gradle/
+bin/
+out/
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+*.ipr
+*.iws
+
+# Server run directory
+run/
+
+# Ignore build directory except compiled jar in build/libs
+build/*
+!build/libs/
+!build/libs/*.jar
+
+# Log files
+*.log
+
+# OS metadata
+.DS_Store
+Thumbs.db
