@@ -1,0 +1,56 @@
+# ==========================================
+# BanHammer Configuration
+# ==========================================
+
+# Display name of the Ban Hammer item
+hammer-name: "&c&l⚡ Ban Hammer ⚡"
+
+# Lore text shown on the Ban Hammer item tooltip
+hammer-lore:
+  - "&7Made for RGX"
+
+# One-shot kill mode:
+# 'CRIT_OR_HEIGHT' (Default): Only critical hits (jump crits) or smash attacks from high above will one-shot kill.
+#                             Normal spam hits on the ground deal normal combat damage.
+# 'ALWAYS': Every single hit instantly kills in one shot.
+# 'NEVER': Normal combat damage only until health reaches 0.
+one-shot-mode: "CRIT_OR_HEIGHT"
+
+# Default reason if none was specified via /banhammer reason <player> <reason>
+default-reason: "Struck down by the Ban Hammer"
+
+# The ONLY announcement broadcast in general chat when a player is struck down
+# Available placeholders: %victim%, %killer%, %reason%
+announcement-message: "&c&l⚡ Here comes the ban hammer, &e&l%victim%&c&l! ⚡"
+
+# Message sent privately to the victim who gets struck
+victim-message: "&cThe ban hammer has struck you"
+
+# Message sent to the person who executed the ban
+# Available placeholders: %victim%
+killer-message: "&a✔ &e%victim% &ahas been banned"
+
+# Number of cinematic lightning strikes that rain down upon death
+lightning-strikes-count: 5
+
+# Interval in ticks between each lightning strike (20 ticks = 1 second)
+# 4 ticks = 0.2 seconds between strikes
+strike-interval-ticks: 4
+
+# The disconnect screen displayed to the banned player upon banishment and when attempting to rejoin
+# Available placeholders: %victim%, %killer%, %reason%
+ban-screen: |
+  &c&l⚡ The ban hammer has struck you ⚡
+
+  &7You are permanently banned from this server!
+
+  &fReason: &e%reason%
+  &fBanned by: &c%killer%
+
+# ==========================================
+# Dependencies & External Ban Plugins
+# ==========================================
+# To configure hard dependencies, soft dependencies, and link plugins
+# (LiteBans, AdvancedBan, EssentialsX, DiscordSRV, etc.), see the dedicated folder:
+# -> plugins/BanHammer/dependencies/dependencies.yml
+# -> plugins/BanHammer/dependencies/linked-plugins.yml

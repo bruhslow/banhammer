@@ -1,0 +1,90 @@
+# ==============================================================================
+#                  BanHammer - Linked Plugins Configuration
+# ==============================================================================
+# Folder: plugins/BanHammer/dependencies/linked-plugins.yml
+#
+# This file lets you link, configure, and tinker with individual plugins.
+# BanHammer can automatically verify if a linked plugin is installed and active,
+# dispatching custom commands when players are struck down or banned.
+#
+# Available Placeholders:
+#   %victim%       - Name of the victim player
+#   %victim_uuid%  - UUID of the victim player
+#   %killer%       - Name of the admin/killer who struck them down
+#   %killer_uuid%  - UUID of the killer/admin
+#   %reason%       - Banishment reason
+#   %world%        - Name of the world where death occurred
+#   %x%, %y%, %z%  - Rounded coordinates
+# ==============================================================================
+
+# Keep native Bukkit/Paper ban in banned-players.json alongside linked plugins
+keep-native-ban: true
+
+# ------------------------------------------------------------------------------
+# Linked Plugins Registry
+# ------------------------------------------------------------------------------
+# Configure any plugin here. You can add your own plugins or toggle presets below.
+#
+# Options:
+#   enabled: true / false
+#   plugin-name: (Optional) Exact plugin name. If set, BanHammer verifies if it's loaded.
+#   type: SOFT or HARD (HARD logs an error on startup if missing; SOFT warns gently)
+#   as-console: true (dispatches as server console) or false (dispatches as admin/killer)
+#   on-ban-commands: Commands dispatched when the player is officially banned
+#   on-death-commands: Commands dispatched the millisecond the fatal strike occurs
+# ------------------------------------------------------------------------------
+linked-plugins:
+  LiteBans:
+    enabled: false
+    plugin-name: "LiteBans"
+    type: SOFT
+    as-console: true
+    on-ban-commands:
+      - "litebans:ban %victim% %reason% -s"
+      # - "litebans:ipban %victim% %reason% -s"
+
+  AdvancedBan:
+    enabled: false
+    plugin-name: "AdvancedBan"
+    type: SOFT
+    as-console: true
+    on-ban-commands:
+      - "advancedban:ban %victim% %reason%"
+
+  EssentialsX:
+    enabled: false
+    plugin-name: "Essentials"
+    type: SOFT
+    as-console: true
+    on-ban-commands:
+      - "essentials:ban %victim% %reason%"
+
+  LibertyBans:
+    enabled: false
+    plugin-name: "LibertyBans"
+    type: SOFT
+    as-console: true
+    on-ban-commands:
+      - "libertybans:ban %victim% %reason%"
+
+  DiscordSRV:
+    enabled: false
+    plugin-name: "DiscordSRV"
+    type: SOFT
+    as-console: true
+    on-death-commands:
+      - "discordsrv bcast ⚡ **%killer%** struck down **%victim%** with the Ban Hammer! Reason: %reason%"
+
+  # ----------------------------------------------------------------------------
+  # Add Your Own Custom Plugin Link Template:
+  # ----------------------------------------------------------------------------
+  # MyCustomBanPlugin:
+  #   enabled: false
+  #   plugin-name: "MyPluginName"
+  #   type: SOFT
+  #   as-console: true
+  #   on-ban-commands:
+  #     - "myplugin:ban %victim% %reason%"
+  #   on-death-commands:
+  #     - "say [Alert] %victim% was eliminated by %killer%!"
+

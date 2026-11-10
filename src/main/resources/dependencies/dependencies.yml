@@ -1,0 +1,103 @@
+# ==============================================================================
+#                  BanHammer - Dependencies Configuration
+# ==============================================================================
+# Folder: plugins/BanHammer/dependencies/
+#
+# This folder is your dedicated workspace to tinker with dependencies,
+# soft-dependencies, and custom event commands.
+#
+# Tip: You can also link specific plugins and configure their custom ban/death
+#      actions in: plugins/BanHammer/dependencies/linked-plugins.yml
+#
+# Available Placeholders in Commands:
+#   %victim%       - Name of the player being struck/banned
+#   %victim_uuid%  - UUID of the victim
+#   %killer%       - Name of the admin/killer who struck them down
+#   %killer_uuid%  - UUID of the killer/admin
+#   %reason%       - The custom ban reason (or default reason)
+#   %world%        - Name of the world where the death occurred
+#   %x%            - X coordinate (rounded integer)
+#   %y%            - Y coordinate (rounded integer)
+#   %z%            - Z coordinate (rounded integer)
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. Hard Dependencies
+# ------------------------------------------------------------------------------
+# Plugins that MUST be installed and enabled on the server for BanHammer to run.
+# If any plugin listed here is missing or disabled, a warning is logged on startup.
+dependencies: []
+
+# ------------------------------------------------------------------------------
+# 2. Soft Dependencies
+# ------------------------------------------------------------------------------
+# Plugins that BanHammer detects, loads after, and hooks into if present.
+# You can add or tinker with any plugin names here.
+soft-dependencies:
+  - LiteBans
+  - AdvancedBan
+  - Essentials
+  - LibertyBans
+  - DiscordSRV
+  - LuckPerms
+  - Vault
+
+# ------------------------------------------------------------------------------
+# 3. Global External Ban Commands (Triggered upon Ban Execution)
+# ------------------------------------------------------------------------------
+# Dispatched when the player is officially banned (after lightning strikes).
+# Note: You can also configure individual plugins in linked-plugins.yml!
+external-ban-commands:
+  # Enable external ban command execution
+  enabled: false
+
+  # If true, commands are dispatched as Console. If false, run as the killer/admin.
+  as-console: true
+
+  # Keep native Bukkit/Paper ban in banned-players.json alongside external plugins
+  keep-native-ban: true
+
+  # Commands executed in order upon ban execution:
+  commands:
+    - "litebans:ban %victim% %reason% -s"
+    - "advancedban:ban %victim% %reason%"
+
+# ------------------------------------------------------------------------------
+# 4. Fatal Strike / Death Commands (Triggered upon Lethal Blow)
+# ------------------------------------------------------------------------------
+# Dispatched immediately when the fatal blow lands (as lightning begins raining down).
+# Useful for Discord announcements, custom sounds, rewards, or logging.
+on-death-commands:
+  # Enable custom commands on lethal hammer strike
+  enabled: false
+
+  # Run commands as Console (true) or as the killer/admin (false)
+  as-console: true
+
+  # Commands executed when the fatal strike occurs:
+  commands:
+    # Example DiscordSRV broadcast to staff channel:
+    # - "discordsrv bcast #staff-logs ⚡ %killer% struck down %victim% for: %reason%"
+    # Example economy reward for killer:
+    # - "eco give %killer% 1000"
+    # Example trophy reward (giving killer the victim's head):
+    # - "give %killer% player_head{SkullOwner:\"%victim%\"} 1"
+    # Example server-wide sound:
+    # - "playsound minecraft:entity.ender_dragon.growl ambient @a %x% %y% %z% 2 0.8"
+
+# ------------------------------------------------------------------------------
+# 5. Hammer Given Commands (Triggered upon /banhammer or /banhammer give)
+# ------------------------------------------------------------------------------
+# Dispatched when a player receives the Ban Hammer.
+on-hammer-give-commands:
+  # Enable custom commands when hammer is received
+  enabled: false
+
+  # Run commands as Console
+  as-console: true
+
+  # Commands executed when a player receives the hammer (%killer% or %player%):
+  commands:
+    # Example staff title or actionbar:
+    # - "title %killer% actionbar {\"text\":\"⚡ The Ban Hammer is now in your hands! ⚡\",\"color\":\"red\"}"
+

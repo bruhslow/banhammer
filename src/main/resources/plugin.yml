@@ -1,0 +1,28 @@
+name: BanHammer
+version: 1.1.0
+main: me.giridharan.banhammer.BanHammerPlugin
+api-version: '1.16'
+description: Lightweight, high-performance cross-version Ban Hammer plugin!
+
+# Soft dependencies: ensures BanHammer loads after these plugins if installed
+softdepend:
+  - LiteBans
+  - AdvancedBan
+  - Essentials
+  - LibertyBans
+  - DiscordSRV
+  - LuckPerms
+  - Vault
+
+commands:
+  banhammer:
+    description: The legendary Ban Hammer
+    permission: banhammer.use
+
+permissions:
+  banhammer.use:
+    description: Allows receiving and using the Ban Hammer
+    default: op
+  banhammer.admin:
+    description: Allows reloading configuration
+    default: op
